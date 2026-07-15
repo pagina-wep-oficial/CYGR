@@ -584,6 +584,26 @@ h2 {
   50% { transform: translateY(5px); }
 }
 
+@keyframes subtleFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes subtlePulse {
+  0%, 100% { box-shadow: 0 14px 38px rgba(0, 0, 0, 0.24); }
+  50% { box-shadow: 0 14px 48px rgba(37, 211, 102, 0.45); }
+}
+
+@keyframes borderGlow {
+  0%, 100% { border-color: rgba(232, 135, 107, 0.15); }
+  50% { border-color: rgba(232, 135, 107, 0.45); }
+}
+
+@keyframes numberPulse {
+  0%, 100% { color: var(--accent); transform: scale(1); }
+  50% { color: var(--accent-deep); transform: scale(1.08); }
+}
+
 .services {
   background: var(--paper);
 }
@@ -650,7 +670,7 @@ h2 {
   border: 1px solid var(--line);
   border-radius: 50%;
   background: var(--cream);
-  color: #518e0d;
+  color: var(--accent-deep);
   font-family: "Syne", sans-serif;
   font-size: 1.55rem;
   transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease;
@@ -735,6 +755,12 @@ h2 {
   border-radius: var(--radius-md);
   background: var(--panel-2);
   cursor: zoom-in;
+  transition: box-shadow 0.35s ease;
+}
+
+.showcase-card:hover,
+.showcase-card:focus-visible {
+  box-shadow: 0 0 0 3px rgba(232, 135, 107, 0.35);
 }
 
 .showcase-card-wide {
@@ -848,6 +874,12 @@ h2 {
   font-family: "Syne", sans-serif;
   font-weight: 800;
   box-shadow: 0 0 0 1px rgba(8, 11, 13, 0.12);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.process-step:hover > span {
+  transform: scale(1.08);
+  box-shadow: 0 0 0 1px rgba(8, 11, 13, 0.12), 0 0 24px rgba(232, 135, 107, 0.35);
 }
 
 .process-step h3 {
@@ -900,18 +932,21 @@ h2 {
 
 .about-badge {
   position: absolute;
-  right: -45px;
-  bottom: 58px;
+  right: -42px;
+  bottom: 36px;
   z-index: 3;
   display: grid;
-  width: 145px;
-  height: 145px;
+  width: 140px;
+  height: 140px;
   place-content: center;
-  border: 9px solid var(--paper);
+  place-items: center;
+  border: 9px solid var(--cream);
   border-radius: 50%;
   background: var(--accent);
   color: var(--ink);
   text-align: center;
+  box-shadow: 0 8px 30px rgba(232, 135, 107, 0.3);
+  animation: subtleFloat 3.5s ease-in-out infinite;
 }
 
 .about-badge strong {
@@ -1050,8 +1085,12 @@ h2 {
   border-radius: 16px;
   background: var(--accent);
   color: var(--ink);
-  font-size: 1.4rem;
-  font-weight: 800;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.contact-item:hover .contact-icon {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgba(232, 135, 107, 0.4);
 }
 
 .contact-item small {
@@ -1176,6 +1215,7 @@ h2 {
   font-size: 0.75rem;
   text-decoration: none;
   transition: transform 0.2s ease;
+  animation: subtlePulse 3s ease-in-out infinite;
 }
 
 .floating-whatsapp:hover,
@@ -2068,6 +2108,125 @@ h2 {
 
   .gallery-cta-inner .btn {
     width: 100%;
+  }
+}
+
+@media (max-width: 400px) {
+  .hero {
+    padding: 114px 0 58px;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.6rem, 16vw, 3.8rem);
+  }
+
+  .hero-visual {
+    min-height: 380px;
+  }
+
+  .hero-image-main {
+    inset: 0 8px 24px;
+    border-radius: 100px 100px 18px 18px;
+  }
+
+  .hero-image-small {
+    display: none;
+  }
+
+  .hero-logo-stamp {
+    top: 20px;
+    left: -4px;
+    width: 140px;
+    padding: 10px 14px;
+  }
+
+  .hero-logo-stamp img {
+    width: 38px;
+    height: 38px;
+  }
+
+  .hero-logo-stamp span {
+    font-size: 0.58rem;
+  }
+
+  .hero-logo-stamp span br {
+    display: none;
+  }
+
+  .hero-points {
+    gap: 5px;
+  }
+
+  .hero-points li {
+    padding: 5px 8px;
+    font-size: 0.58rem;
+  }
+
+  .section {
+    padding: 56px 0;
+  }
+
+  h2 {
+    font-size: clamp(1.8rem, 10vw, 2.5rem);
+  }
+
+  .process-grid {
+    gap: 32px;
+  }
+
+  .process-step {
+    padding: 0 16px 18px;
+  }
+
+  .process-step h3 {
+    font-size: 1.1rem;
+  }
+
+  .about-media img {
+    max-height: 350px;
+  }
+
+  .about-badge {
+    right: -14px;
+    bottom: 18px;
+    width: 90px;
+    height: 90px;
+    border-width: 5px;
+  }
+
+  .about-badge strong {
+    font-size: 1rem;
+  }
+
+  .about-badge span {
+    font-size: 0.5rem;
+  }
+
+  .contact-card {
+    padding: 20px 15px;
+  }
+
+  .contact-item {
+    grid-template-columns: 36px 1fr;
+    gap: 10px;
+  }
+
+  .contact-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+  }
+
+  .floating-whatsapp {
+    right: 10px;
+    bottom: 10px;
+    min-width: 48px;
+    padding: 6px;
+  }
+
+  .floating-whatsapp span {
+    width: 28px;
+    height: 28px;
   }
 }
 
